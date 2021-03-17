@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Proyecto" nsURI="https://org/eclipse/proyecto/mer" nsPrefix="org.eclipse.proyecto.mer">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Esquema">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nombre"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nombre" value="self.tabla -> isUnique(Nombre)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tabla" upperBound="-1"
+        eType="#//Tabla" containment="true" eOpposite="#//Tabla/esquema"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tabla">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nombre"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nombre" value="self.campo -> isUnique(Nombre)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="esquema" lowerBound="1"
+        eType="#//Esquema" eOpposite="#//Esquema/tabla"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="campo" upperBound="-1"
+        eType="#//Campo" containment="true" eOpposite="#//Campo/tabla"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relacion" upperBound="-1"
+        eType="#//Relacion" containment="true" eOpposite="#//Relacion/tabla"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Campo">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nombre"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nombre" value="self.TipoDato -> isUnique(Nombre)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="TipoDato" eType="#//TipoDato"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tabla" lowerBound="1" eType="#//Tabla"
+        eOpposite="#//Tabla/campo"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Primaria" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Relacion">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nombre"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nombre" value="self.campo -> isUnique(Nombre)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tabla" lowerBound="1" eType="#//Tabla"
+        eOpposite="#//Tabla/relacion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="campo" lowerBound="1" eType="#//Campo"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencia" lowerBound="1"
+        eType="#//Tabla"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoDato">
+    <eLiterals name="int"/>
+    <eLiterals name="varchar" value="1"/>
+    <eLiterals name="date" value="2"/>
+  </eClassifiers>
+</ecore:EPackage>

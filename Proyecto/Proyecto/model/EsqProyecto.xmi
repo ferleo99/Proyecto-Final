@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.proyecto.mer:Esquema
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:org.eclipse.proyecto.mer="https://org/eclipse/proyecto/mer"
+    xsi:schemaLocation="https://org/eclipse/proyecto/mer Proyecto.ecore">
+  <tabla Nombre="Cliente">
+    <campo Nombre="Cedula"
+        TipoDato="varchar"
+        Primaria="true"/>
+    <campo Nombre="Nombre"
+        TipoDato="varchar"/>
+    <campo Nombre="Apellido"
+        TipoDato="varchar"/>
+    <campo Nombre="Genero"
+        TipoDato="varchar"/>
+    <campo Nombre="Fecha Nacimiento"
+        TipoDato="date"/>
+    <relacion
+        Nombre="Hacer Reserva"
+        campo="//@tabla.0/@campo.0"
+        referencia="//@tabla.1"/>
+  </tabla>
+  <tabla Nombre="Reserva">
+    <campo Nombre="Id_reserva"
+        Primaria="true"/>
+    <campo Nombre="Estado"/>
+    <relacion
+        Nombre="Codigo_vuelo"
+        campo="//@tabla.2/@campo.0"
+        referencia="//@tabla.3"/>
+  </tabla>
+  <tabla Nombre="Vuelo">
+    <campo Nombre="Id_vuelo"
+        TipoDato="varchar"
+        Primaria="true"/>
+    <campo Nombre="Destino"/>
+    <campo Nombre="Disponibilidad"
+        TipoDato="varchar"/>
+    <campo Nombre="Tipo de Vuelo"
+        TipoDato="varchar"/>
+    <relacion
+        Nombre="Avion"
+        campo="//@tabla.3/@campo.0"
+        referencia="//@tabla.3"/>
+  </tabla>
+  <tabla Nombre="Avion">
+    <campo Nombre="Codigo"
+        Primaria="true"/>
+    <campo Nombre="Marca"
+        TipoDato="varchar"/>
+    <campo Nombre="Estado"
+        TipoDato="varchar"/>
+  </tabla>
+  <tabla Nombre="Destino">
+    <campo Nombre="Id_destino"
+        TipoDato="varchar"
+        Primaria="true"/>
+    <campo Nombre="Nombre"
+        TipoDato="varchar"/>
+  </tabla>
+</org.eclipse.proyecto.mer:Esquema>

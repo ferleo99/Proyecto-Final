@@ -1,0 +1,10 @@
+[comment encoding = UTF-8 /]
+[module generateACC('https://org/eclipse/proyecto/mer')]
+
+
+[template public generateElement(raiz : Esquema)]
+[comment @main/]
+[file (tabla.Nombre+'.sql', false, 'UTF-8')]
+
+[/file]
+[/template]
